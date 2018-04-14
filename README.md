@@ -37,3 +37,9 @@ import (
 	println(str2.ToString())
 	println(str3.ToString())
 ```
+```
+	builder := NewStringBuilder()
+	builder.Append("a").Append("b").Append("c")
+	str := builder.ToString()
+```
+
