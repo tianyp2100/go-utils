@@ -10,7 +10,6 @@ package tsgutils
 import (
 	"strconv"
 	"strings"
-	"bytes"
 )
 
 /*
@@ -104,13 +103,6 @@ func (str *String) Contains(chars string) bool {
 }
 
 /*
-  "460364431014955c2483ec91230e5435" -> [4 6 0 3 6 4 4 3 1 0 1 4 9 5 5 c 2 4 8 3 e c 9 1 2 3 0 e 5 4 3 5]
- */
-func (str *String) ToArray() []string {
-	return strings.Split(str.value, "")
-}
-
-/*
    "12345" -> 12345
  */
 func (str *String) ToInt() (int, error) {
@@ -163,30 +155,10 @@ func (str *String) AppendString(arg string) *String {
 }
 
 /*
-  StringBuilder struct.
-	  Usage:
-		builder := NewStringBuilder()
-		builder.Append("a").Append("b").Append("c")
-		s := builder.String()
-		println(s)
-	  print:
-		abc
+  "460364431014955c2483ec91230e5435" -> [4 6 0 3 6 4 4 3 1 0 1 4 9 5 5 c 2 4 8 3 e c 9 1 2 3 0 e 5 4 3 5]
  */
-type StringBuilder struct {
-	buffer bytes.Buffer
-}
-
-func NewStringBuilder() *StringBuilder {
-	var builder StringBuilder
-	return &builder
-}
-
-func (builder *StringBuilder) Append(s string) *StringBuilder {
-	builder.buffer.WriteString(s)
-	return builder
-}
-func (builder *StringBuilder) ToString() string {
-	return builder.buffer.String()
+func (str *String) ToArray() []string {
+	return strings.Split(str.value, "")
 }
 
 /*
