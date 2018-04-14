@@ -21,6 +21,9 @@ $ go get -u github.com/timespacegroup/go-utils
 ```
 
 ### Usage
+
+##### More info see: utils_test.go
+
 ```
 import (
 	tsgutils "github.com/timespacegroup/go-utils"
