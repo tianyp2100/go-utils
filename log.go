@@ -1,7 +1,6 @@
 package tsgutils
 
 import (
-	"bytes"
 	"log"
 )
 
@@ -19,17 +18,17 @@ func Print(arg ...interface{}) {
 }
 
 func PrintSlowConn(driverName, host, dbName string, consume int64) {
-	var buffer bytes.Buffer
-	buffer.WriteString(driverName)
-	buffer.WriteString("Conn Timeout: ")
-	buffer.WriteString("Host: ")
-	buffer.WriteString(host)
-	buffer.WriteString(", DBName: ")
-	buffer.WriteString(dbName)
-	buffer.WriteString("Consume time: ")
-	buffer.WriteString(Int642String(consume))
-	buffer.WriteString("ms")
-	log.Fatal(buffer.String())
+	builder := NewStringBuilder()
+	builder.Append(driverName)
+	builder.Append("Conn Timeout: ")
+	builder.Append("Host: ")
+	builder.Append(host)
+	builder.Append(", DBName: ")
+	builder.Append(dbName)
+	builder.Append("Consume time: ")
+	builder.Append(NewStringInt64(consume).ToString())
+	builder.Append("ms")
+	log.Fatal(builder.ToString())
 }
 
 func PrintErrorSql(driverName string, err error, sql string, args ...interface{}) {
@@ -39,17 +38,17 @@ func PrintErrorSql(driverName string, err error, sql string, args ...interface{}
 }
 
 func PrintSlowSql(driverName, host, dbName string, consume int64, sql string, args ...interface{}) {
-	var buffer bytes.Buffer
-	buffer.WriteString(driverName)
-	buffer.WriteString("Slow Sql: ")
-	buffer.WriteString("Host: ")
-	buffer.WriteString(host)
-	buffer.WriteString(", DBName: ")
-	buffer.WriteString(dbName)
-	buffer.WriteString("Consume time: ")
-	buffer.WriteString(Int642String(consume))
-	buffer.WriteString("ms, Sql: ")
-	buffer.WriteString(sql)
-	buffer.WriteString(", Args: ")
-	log.Fatal(buffer.String(), args)
+	builder := NewStringBuilder()
+	builder.Append(driverName)
+	builder.Append("Slow Sql: ")
+	builder.Append("Host: ")
+	builder.Append(host)
+	builder.Append(", DBName: ")
+	builder.Append(dbName)
+	builder.Append("Consume time: ")
+	builder.Append(NewStringInt64(consume).ToString())
+	builder.Append("ms, Sql: ")
+	builder.Append(sql)
+	builder.Append(", Args: ")
+	log.Fatal(builder.ToString(), args)
 }

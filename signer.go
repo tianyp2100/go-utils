@@ -49,7 +49,7 @@ func PreHashString(timestamp string, method string, requestPath string, body str
 }
 
 /*
-  md5 sign
+  md5 sign: "123" -> "202cb962ac59075b964b07152d234b70"
 */
 func Md5Signer(message string) string {
 	data := []byte(message)

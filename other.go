@@ -10,9 +10,9 @@ import "fmt"
 */
 
 /*
-  ternary operator replace language: a == b ? c : d
+  ternary operator, replace other language: a == b ? c : d
 */
-func T3O(condition bool, trueValue, falseValue interface{}) interface{} {
+func IIIOperator(condition bool, trueValue, falseValue interface{}) interface{} {
 	if condition {
 		return trueValue
 	}
@@ -23,7 +23,7 @@ func FmtPrintln(info interface{}) {
 	if info != nil {
 		switch t := info.(type) {
 		case struct{}:
-			fmt.Println(Struct2Json(t))
+			fmt.Println(StructToJson(t))
 		default:
 			fmt.Println(t)
 		}

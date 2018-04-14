@@ -28,7 +28,7 @@ import (
   return:
     {"field1":"Welcome to time space chain ...","field2":"1688","field3":"1314.521"}
 */
-func Struct2Json(object interface{}) string {
+func StructToJson(object interface{}) string {
 	data, err := json.Marshal(object)
 	CheckAndPrintError("Struct convert json string failed", err)
 	return string(data)
@@ -45,7 +45,7 @@ func Struct2Json(object interface{}) string {
   print:
     Welcome to time space chain ...
 */
-func Json2Struct(jsonString string, object interface{}) {
+func JsonToStruct(jsonString string, object interface{}) {
 	err := json.Unmarshal([]byte(jsonString), object)
 	CheckAndPrintError("Json string convert struct failed", err)
 }

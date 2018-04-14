@@ -9,8 +9,11 @@ package tsgutils
 
 import (
 	"errors"
-	"strconv"
 	"time"
+)
+
+const (
+	MILLION  = 1000000
 )
 
 /*
@@ -18,8 +21,7 @@ import (
   eg: 2018-04-08 16:16:06.327540712 +0000 UTC
 */
 func UTC() string {
-	UTC := time.Now().UTC()
-	return UTC.String()
+	return time.Now().UTC().String()
 }
 
 /*
@@ -47,24 +49,37 @@ func Second() int64 {
  Get a epoch time
   eg: 1521221737.376
 */
-func EpochTime() string {
-	millisecond := time.Now().UnixNano() / 1000000
-	epoch := strconv.Itoa(int(millisecond))
-	epochBytes := []byte(epoch)
-	epoch = string(epochBytes[:10]) + "." + string(epochBytes[10:])
-	return epoch
+func EpochTime(time time.Time) string {
+	return formatEpochTime(time.UnixNano() / MILLION)
+}
+
+func EpochTimeNow() string {
+	return EpochTime(time.Now())
+}
+
+func formatEpochTime(time int64) string {
+	str := NewStringInt64(time)
+	return str.SubstringEnd(10).AppendString(DOT).Append(str.SubstringBegin(10)).ToString()
 }
 
 /*
  Get a iso time
   eg: 2018-03-16T18:02:48.284Z
 */
-func IsoTime() string {
-	utcTime := time.Now().UTC()
-	iso := utcTime.String()
-	isoBytes := []byte(iso)
-	iso = string(isoBytes[:10]) + "T" + string(isoBytes[11:23]) + "Z"
-	return iso
+func IsoTime(time time.Time) string {
+	return formatIsoTime(time.UTC().String())
+}
+
+func IsoTimeNow() string {
+	return IsoTime(time.Now())
+}
+
+func formatIsoTime(time string) string {
+	str := NewString(time)
+	builder := NewStringBuilder()
+	builder.Append(str.SubstringEnd(10).ToString()).Append("T")
+	builder.Append(str.Substring(11, 23).ToString()).Append("Z")
+	return builder.ToString()
 }
 
 /*
@@ -77,34 +92,75 @@ func IsoToTime(iso string) (time.Time, error) {
 		return nilTime, errors.New("illegal parameter")
 	}
 	// "2018-03-18T06:51:05.933Z"
-	isoBytes := []byte(iso)
-	year, err := strconv.Atoi(string(isoBytes[0:4]))
+	str := NewString(iso)
+	year, err := str.Substring(0, 4).ToInt()
 	if err != nil {
 		return nilTime, errors.New("illegal year")
 	}
-	month, err := strconv.Atoi(string(isoBytes[5:7]))
+	month, err := str.Substring(5, 7).ToInt()
 	if err != nil {
 		return nilTime, errors.New("illegal month")
 	}
-	day, err := strconv.Atoi(string(isoBytes[8:10]))
+	day, err := str.Substring(8, 10).ToInt()
 	if err != nil {
 		return nilTime, errors.New("illegal day")
 	}
-	hour, err := strconv.Atoi(string(isoBytes[11:13]))
+	hour, err := str.Substring(11, 13).ToInt()
 	if err != nil {
 		return nilTime, errors.New("illegal hour")
 	}
-	min, err := strconv.Atoi(string(isoBytes[14:16]))
+	min, err := str.Substring(14, 16).ToInt()
 	if err != nil {
 		return nilTime, errors.New("illegal min")
 	}
-	sec, err := strconv.Atoi(string(isoBytes[17:19]))
+	sec, err := str.Substring(17, 19).ToInt()
 	if err != nil {
 		return nilTime, errors.New("illegal sec")
 	}
-	nsec, err := strconv.Atoi(string(isoBytes[20 : len(isoBytes)-1]))
+	nsec, err := str.Substring(20, str.Len()-1).ToInt()
 	if err != nil {
 		return nilTime, errors.New("illegal nsec")
 	}
 	return time.Date(year, time.Month(month), day, hour, min, sec, nsec, time.UTC), nil
+}
+
+func EpochToTime(epoch string) (time.Time, error) {
+	nilTime := time.Now()
+	if epoch == "" {
+		return nilTime, errors.New("illegal parameter")
+	}
+	f, err := NewString(epoch).ToFloat()
+	if err != nil {
+		return nilTime, errors.New("illegal epoch")
+	}
+	sec := int64(int(f))
+	return time.Unix(sec, 0), nil
+}
+
+var LAYOUT = map[int]string{
+	1: "2006-01-02",
+	2: "2006-01-02 15:04",
+	3: "2006-01-02 15:04:05",
+	4: "2006-01-02 15:04:05.001",
+	5: "2006-01-02T15:04:05.001Z",
+	6: "1136214245.001",
+}
+
+func StringToTime(timeString string, layoutNo int) (time.Time, error) {
+	if layoutNo == 5 {
+		return IsoToTime(timeString)
+	}
+	if layoutNo == 6 {
+		return EpochToTime(timeString)
+	}
+	layout := LAYOUT[layoutNo]
+	return time.Parse(layout, timeString)
+}
+
+func TimeToString(time time.Time, layoutNo int) string {
+	if layoutNo == 6 {
+		return EpochTime(time)
+	}
+	layout := LAYOUT[layoutNo]
+	return time.Format(layout)
 }
