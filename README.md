@@ -1,2 +1,5 @@
-# go-utils
-go language utils.
+# Go utils
+
+##### Some of frequently used utils.
+
+---------------------------------------
