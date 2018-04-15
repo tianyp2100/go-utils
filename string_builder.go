@@ -30,9 +30,26 @@ func NewStringBuilder() *StringBuilder {
 	return &builder
 }
 
+func NewStringBuilderString(str *String) *StringBuilder {
+	var builder StringBuilder
+	builder.buffer.WriteString(str.ToString())
+	return &builder
+}
+
 func (builder *StringBuilder) Append(s string) *StringBuilder {
 	builder.buffer.WriteString(s)
 	return builder
+}
+
+func (builder *StringBuilder) Replace(old, new string) *StringBuilder {
+	str := NewString(builder.ToString()).Replace(old, new)
+	return NewStringBuilderString(str)
+}
+
+func (builder *StringBuilder) RemoveLast() *StringBuilder {
+	str1 := NewString(builder.ToString())
+	str2 := str1.Substring(0, str1.Len()-1)
+	return NewStringBuilderString(str2)
 }
 
 func (builder *StringBuilder) Clear() *StringBuilder {

@@ -12,7 +12,7 @@
 |log |  CheckAndPrintError
 |signer |  HmacSha256Base64Signer, Md5Signer
 |string |  Trim, Replace, Contains, ToArray, ToInt, ToInt64, ToFloat, Substring, Append, StringBuilder, Clear, Remove,RemoveLast
-|string_builder| StringBuilder,Append
+|string_builder| StringBuilder,Append,Replace,RemoveLast
 |interface_builder|InterfaceBuilder, Append, Clear
 |time |  Millisecond, EpochTime, IsoTime, UTC, StringToTime, TimeToString
 |other,utils_test |  IIIOperator, symbol, test

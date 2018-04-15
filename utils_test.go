@@ -136,8 +136,15 @@ func TestInterfaceBuilder(t *testing.T) {
 	fmt.Println(builder2.ToInterfaces())
 }
 
-func TestStringRemove(t *testing.T)  {
+func TestStringRemove(t *testing.T) {
 	str := "abc"
 	FmtPrintln(NewString(str).Remove(1).ToString())
 	FmtPrintln(NewString(str).RemoveLast().ToString())
+}
+
+func TestStringBuilderReplace(t *testing.T) {
+	builder := NewStringBuilder()
+	builder.Append("%111%abc%987%")
+	FmtPrintln(builder.Replace("%", "$").ToString())
+	FmtPrintln(builder.RemoveLast().ToString())
 }
