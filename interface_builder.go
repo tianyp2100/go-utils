@@ -27,11 +27,9 @@ package tsgutils
 		builder := tsgutils.NewInterfaceBuilder()
 		for rows.Next() {
 			builder.Clear()
-			builder.Append(&user.Host)
-			builder.Append(&user.User)
+			builder.Append(&user.Host).Append(&user.User)
 			builder.Append(&user.AuthenticationString)
-			interfaces := builder.ToInterfaces()
-			err := rows.Scan(interfaces...)
+			err := rows.Scan(builder.ToInterfaces()...)
 			tsgutils.CheckAndPrintError("MySQL query rows scan error", err)
 			users = append(users, *user)
 		}
