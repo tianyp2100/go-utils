@@ -22,13 +22,6 @@ func IIIInterfaceOperator(condition bool, trueValue, falseValue interface{}) int
 	return falseValue
 }
 
-func IIITypeOperator(condition bool, trueValue, falseValue types.Type) types.Type {
-	if condition {
-		return trueValue
-	}
-	return falseValue
-}
-
 func FmtPrintln(info interface{}) {
 	if info != nil {
 		switch t := info.(type) {
