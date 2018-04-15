@@ -97,7 +97,7 @@ func (str *String) Remove(index int) *String {
 	"abc" -> "ab"
  */
 func (str *String) RemoveLast() *String {
-	return str.Substring(0, str.Len()-1);
+	return str.Substring(0, str.Len()-1)
 }
 
 
