@@ -4,6 +4,7 @@ import (
 	"testing"
 	"time"
 	"fmt"
+	"github.com/timespacegroup/go-utils"
 )
 
 func TestGUID(t *testing.T) {
@@ -33,8 +34,12 @@ func TestJsonToStruct(t *testing.T) {
 }
 
 func TestIIIOperator(t *testing.T) {
-	result := IIIOperator(1 > 2, 3, 4)
-	FmtPrintln(result)
+	result1 := IIIInterfaceOperator(1 > 2, 3, 4)
+	result2 := IIIInterfaceOperator(1 > 2, "1", "2")
+	result3 := IIIInterfaceOperator(1 > 2,"(?,","(")
+	FmtPrintln(result1)
+	FmtPrintln(result2)
+	FmtPrintln(result3)
 }
 
 func TestHmacSha256Base64Signer(t *testing.T) {

@@ -1,6 +1,9 @@
 package tsgutils
 
-import "fmt"
+import (
+	"fmt"
+	"go/types"
+)
 
 /*
  other utils
@@ -12,7 +15,14 @@ import "fmt"
 /*
   ternary operator, replace other language: a == b ? c : d
 */
-func IIIOperator(condition bool, trueValue, falseValue interface{}) interface{} {
+func IIIInterfaceOperator(condition bool, trueValue, falseValue interface{}) interface{} {
+	if condition {
+		return trueValue
+	}
+	return falseValue
+}
+
+func IIITypeOperator(condition bool, trueValue, falseValue types.Type) types.Type {
 	if condition {
 		return trueValue
 	}
