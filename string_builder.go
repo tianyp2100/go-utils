@@ -42,14 +42,18 @@ func (builder *StringBuilder) Append(s string) *StringBuilder {
 }
 
 func (builder *StringBuilder) Replace(old, new string) *StringBuilder {
+	builder.Clear()
 	str := NewString(builder.ToString()).Replace(old, new)
-	return NewStringBuilderString(str)
+	builder.buffer.WriteString(str)
+	return builder
 }
 
 func (builder *StringBuilder) RemoveLast() *StringBuilder {
+	builder.Clear()
 	str1 := NewString(builder.ToString())
 	str2 := str1.Substring(0, str1.Len()-1)
-	return NewStringBuilderString(str2)
+	builder.buffer.WriteString(str2)
+	return builder
 }
 
 func (builder *StringBuilder) Clear() *StringBuilder {
