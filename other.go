@@ -21,6 +21,14 @@ func IIIInterfaceOperator(condition bool, trueValue, falseValue interface{}) int
 	return falseValue
 }
 
+func InterfaceToString(i interface{}) string {
+	switch t := i.(type) {
+	case string:
+		return t
+	}
+	return ""
+}
+
 func FmtPrintln(info interface{}) {
 	if info != nil {
 		switch t := info.(type) {
