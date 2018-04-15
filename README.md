@@ -7,12 +7,13 @@
 ### intro
 |file|function
 |---|---
-|idgenerator |  GUID, UUID
+|id_generator |  GUID, UUID
 |json |  StructToJson, JsonToStruct
 |log |  CheckAndPrintError
 |signer |  HmacSha256Base64Signer, Md5Signer
-|string |  Trim, Replace, Contains, ToArray, ToInt, ToInt64, ToFloat, Substring, Append, StringBuilder
-|stringbuilder| StringBuilder,Append
+|string |  Trim, Replace, Contains, ToArray, ToInt, ToInt64, ToFloat, Substring, Append, StringBuilder, Clear
+|string_builder| StringBuilder,Append
+|interface_builder|InterfaceBuilder, Append, Clear
 |time |  Millisecond, EpochTime, IsoTime, UTC, StringToTime, TimeToString
 |other,utils_test |  IIIOperator, symbol, test
 
