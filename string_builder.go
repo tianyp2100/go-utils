@@ -3,7 +3,7 @@ package tsgutils
 /*
  string builder utils
  @author Tony Tian
- @date 2018-03-17
+ @date 2018-04-14
  @version 1.0.0
 */
 
@@ -34,6 +34,13 @@ func (builder *StringBuilder) Append(s string) *StringBuilder {
 	builder.buffer.WriteString(s)
 	return builder
 }
+
+func (builder *StringBuilder) Clear() *StringBuilder {
+	var buffer bytes.Buffer
+	builder.buffer = buffer
+	return builder
+}
+
 func (builder *StringBuilder) ToString() string {
 	return builder.buffer.String()
 }

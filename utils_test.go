@@ -3,6 +3,7 @@ package tsgutils
 import (
 	"testing"
 	"time"
+	"fmt"
 )
 
 func TestGUID(t *testing.T) {
@@ -121,4 +122,16 @@ func TestStringToTime(t *testing.T) {
 	time, err := StringToTime(timeStr, 5)
 	CheckAndPrintError("Convert string to time failed", err)
 	FmtPrintln(time)
+}
+
+func TestInterfaceBuilder(t *testing.T) {
+	var s1 string = "Abc"
+	var i1 int = 123
+	var f1 float64 = 123.40
+	builder1 := NewInterfaceBuilder()
+	builder1.Append(s1).Append(i1).Append(f1)
+	fmt.Println(builder1.ToInterfaces())
+	builder2 := builder1.Clear()
+	builder2.Appends(s1, i1, f1)
+	fmt.Println(builder2.ToInterfaces())
 }

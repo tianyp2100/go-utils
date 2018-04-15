@@ -9,7 +9,7 @@ import (
 /*
  uuid utils
  @author Tony Tian
- @date 2018-03-17
+ @date 2018-04-14
  @version 1.0.0
 */
 
