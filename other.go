@@ -2,7 +2,6 @@ package tsgutils
 
 import (
 	"fmt"
-	"go/types"
 )
 
 /*
