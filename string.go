@@ -58,6 +58,12 @@ func (str *String) ToString() string {
 	return str.value
 }
 
+func (str *String) Clear() *String {
+	var newStr string
+	str.value = newStr
+	return str
+}
+
 /*
  "123" -> 3
  */
@@ -79,6 +85,21 @@ func (str *String) Trim() *String {
 func (str *String) Replace(old, new string) *String {
 	return NewString(strings.Replace(str.value, old, new, -1))
 }
+
+/*
+	"abc" -> 1 -> "ac"
+ */
+func (str *String) Remove(index int) *String {
+	strTmp := NewStringBuilder().Append(str.SubstringEnd(index).ToString()).Append(str.SubstringBegin(index + 1).ToString()).ToString()
+	return NewString(strTmp)
+}
+/*
+	"abc" -> "ab"
+ */
+func (str *String) RemoveLast() *String {
+	return str.Substring(0, str.Len()-1);
+}
+
 
 /*
   If a string contains a string, return true, and ignore case.

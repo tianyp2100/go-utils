@@ -11,7 +11,7 @@
 |json |  StructToJson, JsonToStruct
 |log |  CheckAndPrintError
 |signer |  HmacSha256Base64Signer, Md5Signer
-|string |  Trim, Replace, Contains, ToArray, ToInt, ToInt64, ToFloat, Substring, Append, StringBuilder, Clear
+|string |  Trim, Replace, Contains, ToArray, ToInt, ToInt64, ToFloat, Substring, Append, StringBuilder, Clear, Remove
 |string_builder| StringBuilder,Append
 |interface_builder|InterfaceBuilder, Append, Clear
 |time |  Millisecond, EpochTime, IsoTime, UTC, StringToTime, TimeToString

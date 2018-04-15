@@ -135,3 +135,9 @@ func TestInterfaceBuilder(t *testing.T) {
 	builder2.Appends(s1, i1, f1)
 	fmt.Println(builder2.ToInterfaces())
 }
+
+func TestStringRemove(t *testing.T)  {
+	str := "abc"
+	FmtPrintln(NewString(str).Remove(1).ToString())
+	FmtPrintln(NewString(str).RemoveLast().ToString())
+}
