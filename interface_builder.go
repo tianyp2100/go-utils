@@ -23,7 +23,18 @@ package tsgutils
 		[Abc 123 123.4]
 		[Abc 123 123.4]
       If you operate the database:
-		rows.Scan(interfaces...)
+		var users []User
+		builder := tsgutils.NewInterfaceBuilder()
+		for rows.Next() {
+			builder.Clear()
+			builder.Append(&user.Host)
+			builder.Append(&user.User)
+			builder.Append(&user.AuthenticationString)
+			interfaces := builder.ToInterfaces()
+			err := rows.Scan(interfaces...)
+			tsgutils.CheckAndPrintError("MySQL query rows scan error", err)
+			users = append(users, *user)
+		}
  */
 
 type InterfaceBuilder struct {
