@@ -197,6 +197,34 @@ func (str *String) ToArray() []string {
 }
 
 /*
+  first = false: "aaa_bbb_ccc" -> "aaaBbbCcc"
+  first = true: "aaa_bbb_ccc" -> "AaaBbbCcc"
+ */
+func FirstCaseToUpper(str string, first bool) string {
+	temp := strings.Split(str, "_")
+	var upperStr string
+	for y := 0; y < len(temp); y++ {
+		vv := []rune(temp[y])
+		if y == 0 && !first {
+			continue
+		}
+		for i := 0; i < len(vv); i++ {
+			if i == 0 {
+				vv[i] -= 32
+				upperStr += string(vv[i])
+			} else {
+				upperStr += string(vv[i])
+			}
+		}
+	}
+	if first {
+		return upperStr
+	} else {
+		return temp[0] + upperStr
+	}
+}
+
+/*
  [9 9 8 4 2 9 1 7 - a 5 4 b - 3 3 1 6 - c d f 3 - 8 7 d 9 f b 5 7] -> "99842917-a54b-3316-cdf3-87d9fb57"
  */
 func ArrayToString(arrays []string) string {
