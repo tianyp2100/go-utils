@@ -4,7 +4,6 @@ import (
 	"testing"
 	"time"
 	"fmt"
-	"github.com/timespacegroup/go-utils"
 )
 
 func TestGUID(t *testing.T) {
@@ -36,7 +35,7 @@ func TestJsonToStruct(t *testing.T) {
 func TestIIIOperator(t *testing.T) {
 	result1 := IIIInterfaceOperator(1 > 2, 3, 4)
 	result2 := IIIInterfaceOperator(1 > 2, "1", "2")
-	result3 := IIIInterfaceOperator(1 > 2,"(?,","(")
+	result3 := IIIInterfaceOperator(1 > 2, "(?,", "(")
 	FmtPrintln(result1)
 	FmtPrintln(result2)
 	FmtPrintln(result3)
@@ -75,6 +74,8 @@ func TestString(t *testing.T) {
 	FmtPrintln(str.Len())
 	FmtPrintln(NewString(" 1 23 ").Trim().ToString())
 	FmtPrintln(NewString("%111%abc%987%").Replace("%", "$").ToString())
+	FmtPrintln(NewString("123xxxbbb5990").StartsWith("123x"))
+	FmtPrintln(NewString("123xxxbbb5990").EndsWith("5990"))
 }
 
 func TestNewStringFloat64(t *testing.T) {

@@ -72,6 +72,20 @@ func (str *String) Len() int {
 }
 
 /*
+	"123xxxbbb5990" -> "123x" = true
+ */
+func (str *String) StartsWith(s string) bool {
+	return str.SubstringEnd(len(s)).ToString() == s
+}
+
+/*
+	"123xxxbbb5990" -> "5990" = true
+ */
+func (str *String) EndsWith(s string) bool {
+	return str.SubstringBegin(str.Len() - len(s)).ToString() == s
+}
+
+/*
   " 123 " -> "123"
   " 1 23 " -> "1 23"
  */
@@ -93,13 +107,13 @@ func (str *String) Remove(index int) *String {
 	strTmp := NewStringBuilder().Append(str.SubstringEnd(index).ToString()).Append(str.SubstringBegin(index + 1).ToString()).ToString()
 	return NewString(strTmp)
 }
+
 /*
 	"abc" -> "ab"
  */
 func (str *String) RemoveLast() *String {
 	return str.Substring(0, str.Len()-1)
 }
-
 
 /*
   If a string contains a string, return true, and ignore case.
