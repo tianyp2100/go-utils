@@ -197,6 +197,20 @@ func (str *String) ToArray() []string {
 }
 
 /*
+  "aaa" -> "AAA"
+ */
+func (str *String) ToLower() *String {
+	return NewString(strings.ToLower(str.value))
+}
+
+/*
+  "BBB" -> "bbb"
+ */
+func (str *String) ToUpper() *String {
+	return NewString(strings.ToUpper(str.value))
+}
+
+/*
   first = false: "aaa_bbb_ccc" -> "aaaBbbCcc"
   first = true: "aaa_bbb_ccc" -> "AaaBbbCcc"
  */

@@ -76,6 +76,8 @@ func TestString(t *testing.T) {
 	FmtPrintln(NewString("%111%abc%987%").Replace("%", "$").ToString())
 	FmtPrintln(NewString("123xxxbbb5990").StartsWith("123x"))
 	FmtPrintln(NewString("123xxxbbb5990").EndsWith("5990"))
+	FmtPrintln(NewString("aaa").ToUpper().ToString())
+	FmtPrintln(NewString("BBB").ToLower().ToString())
 }
 
 func TestNewStringFloat64(t *testing.T) {
