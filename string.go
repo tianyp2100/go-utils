@@ -123,7 +123,7 @@ func (str *String) RemoveLast() *String {
      chars = "key" -> false
 */
 func (str *String) ContainsIgnoreCase(chars string) bool {
-	return strings.ContainsAny(str.value, chars)
+	return str.ToLower().Contains(strings.ToLower(chars))
 }
 
 /*
