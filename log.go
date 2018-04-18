@@ -2,6 +2,7 @@ package tsgutils
 
 import (
 	"log"
+	"fmt"
 )
 
 /*
@@ -19,4 +20,8 @@ func Print(arg ...interface{}) {
 
 func Println(arg ...interface{}) {
 	log.Println(arg)
+}
+
+func Stdout(arg ...interface{}) {
+	fmt.Println(arg)
 }
