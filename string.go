@@ -189,6 +189,21 @@ func (str *String) AppendString(arg string) *String {
 	return NewString(strTmp)
 }
 
+func (str *String) AppendInt(i int) *String {
+	strTmp := str.value + strconv.Itoa(i)
+	return NewString(strTmp)
+}
+
+func (str *String) AppendInt64(i int64) *String {
+	strTmp := str.value + strconv.FormatInt(i, 10)
+	return NewString(strTmp)
+}
+
+func (str *String) AppendFloat64(f float64) *String {
+	strTmp := str.value + strconv.FormatFloat(f, 'E', -1, 64)
+	return NewString(strTmp)
+}
+
 /*
   "460364431014955c2483ec91230e5435" -> [4 6 0 3 6 4 4 3 1 0 1 4 9 5 5 c 2 4 8 3 e c 9 1 2 3 0 e 5 4 3 5]
  */
