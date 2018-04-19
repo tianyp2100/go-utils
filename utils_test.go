@@ -156,3 +156,15 @@ func TestStringBuilderReplace(t *testing.T) {
 	FmtPrintln(builder.Replace("%", "$").ToString())
 	FmtPrintln(builder.RemoveLast().ToString())
 }
+
+func TestTryCatchFinally(t *testing.T)  {
+	Try(func() {
+		panic("exe ...")
+	}).Catch(1, func(e interface{}) {
+		Stdout("iii" ,e)
+	}).Catch("", func(e interface{}) {
+		Stdout("sss", e)
+	}).Finally(func() {
+		Stdout("fff")
+	})
+}
