@@ -138,6 +138,20 @@ func (str *String) Contains(chars string) bool {
 }
 
 /*
+  abcdef -> b = 1
+ */
+func (str *String) LastIndex(chars string) int {
+	return strings.LastIndex(str.value, chars)
+}
+
+/*
+  abcdef -> e = 4
+ */
+func (str *String) Index(chars string) int {
+	return strings.Index(str.value, chars)
+}
+
+/*
    "12345" -> 12345
  */
 func (str *String) ToInt() (int, error) {

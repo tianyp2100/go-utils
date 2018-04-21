@@ -78,6 +78,8 @@ func TestString(t *testing.T) {
 	FmtPrintln(NewString("123xxxbbb5990").EndsWith("5990"))
 	FmtPrintln(NewString("aaa").ToUpper().ToString())
 	FmtPrintln(NewString("BBB").ToLower().ToString())
+	FmtPrintln(NewString("abcdef").Index("b"))
+	FmtPrintln(NewString("abcdef").LastIndex("e"))
 }
 
 func TestNewStringFloat64(t *testing.T) {
@@ -155,9 +157,4 @@ func TestStringBuilderReplace(t *testing.T) {
 	builder.Append("%111%abc%987%")
 	FmtPrintln(builder.Replace("%", "$").ToString())
 	FmtPrintln(builder.RemoveLast().ToString())
-}
-
-func TestInterfaceToArray(t *testing.T) {
-	args := InterfaceToArray("1", "2", "3")
-	Stdout(args)
 }
