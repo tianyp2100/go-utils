@@ -156,3 +156,8 @@ func TestStringBuilderReplace(t *testing.T) {
 	FmtPrintln(builder.Replace("%", "$").ToString())
 	FmtPrintln(builder.RemoveLast().ToString())
 }
+
+func TestInterfaceToArray(t *testing.T) {
+	args := InterfaceToArray("1", "2", "3")
+	Stdout(args)
+}
