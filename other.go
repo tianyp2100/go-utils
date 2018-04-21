@@ -29,6 +29,14 @@ func InterfaceToString(i interface{}) string {
 	return ""
 }
 
+func InterfaceToInt(i interface{}) int {
+	switch t := i.(type) {
+	case int:
+		return t
+	}
+	return 0
+}
+
 func FmtPrintln(info interface{}) {
 	if info != nil {
 		switch t := info.(type) {
