@@ -29,17 +29,6 @@ func InterfaceToString(i interface{}) string {
 	return ""
 }
 
-func InterfaceToArray(args ...interface{}) ([]interface{}) {
-	if args == nil {
-		return args
-	}
-	var argsTmp [] interface{}
-	for i := range args {
-		argsTmp = append(argsTmp, args[i])
-	}
-	return argsTmp
-}
-
 func FmtPrintln(info interface{}) {
 	if info != nil {
 		switch t := info.(type) {
