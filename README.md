@@ -63,3 +63,4 @@ func (user *User) Rows2struct(rows *mysql.Rows) {
 }
 ```
 ### The future will continue to be updated.
+##### https://blog.csdn.net/typa01_kk/article/category/7629914
