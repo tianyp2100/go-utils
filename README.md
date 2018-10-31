@@ -28,7 +28,7 @@ $ go get -u github.com/timespacegroup/go-utils
 
 ```
 import (
-	tsgutils "github.com/timespacegroup/go-utils"
+	tsgutils "github.com/typa01/go-utils"
 )
 ```
 ```
