@@ -19,7 +19,7 @@
 
 ### Installation
 ```
-$ go get -u github.com/timespacegroup/go-utils
+$ go get -u github.com/typa01/go-utils
 ```
 
 ### Usage
